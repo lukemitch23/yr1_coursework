@@ -9,4 +9,5 @@ add_executable(yr1_coursework main.c
         output_grid.c
         output_grid.h
         player_move.c
-        player_move.h)
+        player_move.h
+        main.h)

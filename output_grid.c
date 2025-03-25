@@ -11,9 +11,9 @@ Project title:
 
 void output_grid(int (*game_matrix)[12]) {
  // Print the top border
- printf("+----");
+ printf("+---");
  for (int j = 0; j < 12; j++) {
-  printf("----");
+  printf("---");
  }
  printf("+\n");
 
@@ -26,9 +26,9 @@ void output_grid(int (*game_matrix)[12]) {
   printf("\n");
 
   // Print row separator
-  printf("+----");
+  printf("+---");
   for (int j = 0; j < 12; j++) {
-   printf("----");
+   printf("---");
   }
   printf("+\n");
  }
