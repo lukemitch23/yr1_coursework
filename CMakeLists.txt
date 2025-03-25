@@ -5,4 +5,8 @@ set(CMAKE_C_STANDARD 11)
 
 add_executable(yr1_coursework main.c
         grid_generation.c
-        grid_generation.h)
+        grid_generation.h
+        output_grid.c
+        output_grid.h
+        player_move.c
+        player_move.h)
