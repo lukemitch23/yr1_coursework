@@ -8,7 +8,8 @@
 typedef struct {
     int x;
     int y;
-    char value;
+    char store_value;
+    char replace_value;
 } user_pos;
 
 #endif //MAIN_H

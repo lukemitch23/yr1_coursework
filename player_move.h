@@ -6,5 +6,5 @@
 #define PLAYER_MOVE_H
 #include "main.h"
 #include <stdbool.h>
-void player_move(int (*game_matrix)[12], char user_move, user_pos *user, bool *running, bool *game_live);
+void player_move(int (*game_matrix)[12], char user_move, user_pos *user, bool *moving);
 #endif //PLAYER_MOVE_H

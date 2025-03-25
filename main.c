@@ -26,12 +26,13 @@ int main(void) {
     user_pos user;
     user.x = 0;
     user.y = 0;
-    user.value = '0';
+    user.replace_value = 48;
     generate_grid(game_matrix);
+    int game_menu_choice;
+    bool moving = true;
 
-
+    printf("Welcome to the mining game! \n");
     do {
-        printf("Welcome to the mining game! \n");
         printf("Menu:\n");
         printf("1. Create a new game\n");
         printf("2. Exit");
@@ -43,11 +44,29 @@ int main(void) {
             output_grid(game_matrix);
 
             do {
-                printf("\nEnter your move: ");
-                scanf(" %c", &user_move);
+                printf("\n\nWhat would you like to do?\n");
+                printf("1. Move character\n");
+                printf("2. Dig!\n");
+                printf("3. Stop game\n");
+                printf("Enter your choice: ");
+                scanf("%d", &game_menu_choice);
 
-                player_move(game_matrix, user_move, &user, &running, &game_live);
-                output_grid(game_matrix);
+                if (game_menu_choice == 1) {
+                    do {
+                        printf("\nEnter your move or press q to stop: ");
+                        scanf(" %c", &user_move);
+
+                        player_move(game_matrix, user_move, &user, &moving);
+                        output_grid(game_matrix);
+                    } while (moving);
+                } else if (game_menu_choice == 2) {
+                    printf("Function not built yet!");
+                } else if (game_menu_choice == 3) {
+                    printf("Returning to menu");
+                    game_live = false;
+                }
+
+
             } while (game_live);
         } else if (menu_choice == 2) {
             printf("Quitting...\n");
