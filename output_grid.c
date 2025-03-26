@@ -8,6 +8,7 @@ Project title:
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 
 void output_grid(int (*game_matrix)[12]) {
  // Print the top border
