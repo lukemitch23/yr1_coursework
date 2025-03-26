@@ -21,7 +21,7 @@ Project title:
 
 // Note here to check back and see whether or not we need both game_live and running
 
-void player_move(int (*game_matrix)[12], user_pos *user, bool *moving, int *gem_count) {
+void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
   // if (user_move == 'w') {
   //     if (user->x == 0) {
   //         printf("Invalid move \n");
@@ -71,21 +71,19 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving, int *gem_
     printf("Use the arrow keys to move or esc to escape\n");
     do {
         ch = getch();
-        printf("\n CH is: %d\n", ch);
         if (ch == 27) {  // ESC key
             *moving = false;
             break;
         }
 
         if (ch == 13) {  // Enter key (ASCII 13)
-            *moving = false;
-            spot_mining(game_matrix, user, gem_count);
+            // *moving = false;
+            spot_mining(game_matrix, user);
             break;
         }
 
         if (ch == 0 || ch == 224) {  // Arrow key indicator
             ch = getch();
-            printf("\n CH is: %d\n", ch);
             switch (ch) {
                 case 72:  // Up arrow
                     if (user->x == 0) {
@@ -113,7 +111,6 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving, int *gem_
                     if (user->y == 0) {
                         printf("Invalid move \n");
                     } else {
-                        printf("Should be left\n");
                         user->store_value = game_matrix[user->x][user->y-1];
                         game_matrix[user->x][user->y] = user->replace_value;
                         user->y--;
@@ -138,6 +135,7 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving, int *gem_
             }
             Sleep(200);  // Wait for 200ms to prevent spamming
         }
+        system("cls");
         output_grid(game_matrix);
     } while (*moving);
 }

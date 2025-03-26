@@ -79,6 +79,18 @@ build CMakeFiles/yr1_coursework.dir/mining.c.obj: C_COMPILER__yr1_coursework_uns
   OBJECT_DIR = CMakeFiles\yr1_coursework.dir
   OBJECT_FILE_DIR = CMakeFiles\yr1_coursework.dir
 
+build CMakeFiles/yr1_coursework.dir/main_menu.c.obj: C_COMPILER__yr1_coursework_unscanned_Debug C$:/Users/luke/Documents/GitHub/yr1_coursework/main_menu.c || cmake_object_order_depends_target_yr1_coursework
+  DEP_FILE = CMakeFiles\yr1_coursework.dir\main_menu.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\yr1_coursework.dir
+  OBJECT_FILE_DIR = CMakeFiles\yr1_coursework.dir
+
+build CMakeFiles/yr1_coursework.dir/end_stats.c.obj: C_COMPILER__yr1_coursework_unscanned_Debug C$:/Users/luke/Documents/GitHub/yr1_coursework/end_stats.c || cmake_object_order_depends_target_yr1_coursework
+  DEP_FILE = CMakeFiles\yr1_coursework.dir\end_stats.c.obj.d
+  FLAGS = -g -std=gnu11 -fdiagnostics-color=always
+  OBJECT_DIR = CMakeFiles\yr1_coursework.dir
+  OBJECT_FILE_DIR = CMakeFiles\yr1_coursework.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target yr1_coursework
@@ -87,7 +99,7 @@ build CMakeFiles/yr1_coursework.dir/mining.c.obj: C_COMPILER__yr1_coursework_uns
 #############################################
 # Link the executable yr1_coursework.exe
 
-build yr1_coursework.exe: C_EXECUTABLE_LINKER__yr1_coursework_Debug CMakeFiles/yr1_coursework.dir/main.c.obj CMakeFiles/yr1_coursework.dir/grid_generation.c.obj CMakeFiles/yr1_coursework.dir/output_grid.c.obj CMakeFiles/yr1_coursework.dir/player_move.c.obj CMakeFiles/yr1_coursework.dir/mining.c.obj
+build yr1_coursework.exe: C_EXECUTABLE_LINKER__yr1_coursework_Debug CMakeFiles/yr1_coursework.dir/main.c.obj CMakeFiles/yr1_coursework.dir/grid_generation.c.obj CMakeFiles/yr1_coursework.dir/output_grid.c.obj CMakeFiles/yr1_coursework.dir/player_move.c.obj CMakeFiles/yr1_coursework.dir/mining.c.obj CMakeFiles/yr1_coursework.dir/main_menu.c.obj CMakeFiles/yr1_coursework.dir/end_stats.c.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\yr1_coursework.dir

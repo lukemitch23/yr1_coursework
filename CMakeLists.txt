@@ -12,4 +12,8 @@ add_executable(yr1_coursework main.c
         player_move.h
         main.h
         mining.c
-        mining.h)
+        mining.h
+        main_menu.c
+        main_menu.h
+        end_stats.c
+        end_stats.h)

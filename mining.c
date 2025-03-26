@@ -9,14 +9,17 @@ Project title:
 
 #include <stdio.h>
 #include "main.h"
+#include <windows.h>
 
-void spot_mining(int (*game_matrix)[12], user_pos *user, int *gem_count){
+void spot_mining(int (*game_matrix)[12], user_pos *user){
  if (user->store_value == 42) {
   printf("Gem found!\t");
-  *gem_count = *gem_count + 1;
-  printf("You now have %d gems!", *gem_count);
+  user->gem_count = user->gem_count + 1;
+  printf("You now have %d gems!\n", user->gem_count);
   user->replace_value = 48;
+  user->store_value = 48;
  } else {
-  printf("\nNo gems found!");
+  printf("\nNo gems found!\n");
  }
+ Sleep(2000);
 }

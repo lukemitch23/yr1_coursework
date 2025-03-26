@@ -10,6 +10,7 @@ typedef struct {
     int y;
     char store_value;
     char replace_value;
+    int gem_count;
 } user_pos;
 
 #endif //MAIN_H
