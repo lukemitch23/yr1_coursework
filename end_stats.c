@@ -15,8 +15,8 @@ void end_stats(user_pos *user) {
  char username[50];
  FILE *fp;
 
- printf("\n You successfully collected: %d gems across your time player!", user->gem_count);
- printf("\n Enter your username so we can save the score: ");
+ printf("\nYou successfully collected: %d gems across your time player!", user->gem_count);
+ printf("\nEnter your username so we can save the score: ");
  scanf("%s", username);
 
  fp = fopen("user_scores.txt", "a");
