@@ -22,52 +22,7 @@ Project title:
 // Note here to check back and see whether or not we need both game_live and running
 
 void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
-  // if (user_move == 'w') {
-  //     if (user->x == 0) {
-  //         printf("Invalid move \n");
-  //     } else {
-  //         user->store_value = game_matrix[user->x-1][user->y];
-  //         game_matrix[user->x][user->y] = user->replace_value;
-  //         user->x--;
-  //         game_matrix[user->x][user->y] = 80;
-  //         user->replace_value = user->store_value;
-  //     }
-  // } else if (user_move == 's') {
-  //     if (user->x == 11) {
-  //         printf("Invalid move \n");
-  //     } else {
-  //         user->store_value = game_matrix[user->x+1][user->y];
-  //         game_matrix[user->x][user->y] = user->replace_value;
-  //         user->x++;
-  //         game_matrix[user->x][user->y] = 80;
-  //         user->replace_value = user->store_value;
-  //     }
-  // } else if (user_move == 'a') {
-  //     if (user->y == 0) {
-  //         printf("Invalid move \n");
-  //     } else {
-  //         user->store_value = game_matrix[user->x][user->y-1];
-  //         game_matrix[user->x][user->y] = user->replace_value;
-  //         user->y--;
-  //         game_matrix[user->x][user->y] = 80;
-  //         user->replace_value = user->store_value;
-  //     }
-  // } else if (user_move == 'd') {
-  //     if (user->y == 11) {
-  //         printf("Invalid move \n");
-  //     } else {
-  //         user->store_value = game_matrix[user->x][user->y+1];
-  //         game_matrix[user->x][user->y] = user->replace_value;
-  //         user->y++;
-  //         game_matrix[user->x][user->y] = 80;
-  //         user->replace_value = user->store_value;
-  //
-  //     }
-  // } else if (user_move == 'q') {
-  //     *moving = false;
-  // }
     int ch;
-    bool update_required;
     printf("Use the arrow keys to move or esc to escape\n");
     do {
         ch = getch();
@@ -86,8 +41,9 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
             ch = getch();
             switch (ch) {
                 case 72:  // Up arrow
-                    if (user->x == 0) {
-                        printf("Invalid move \n");
+                    if (user->x == 0 || game_matrix[user->x - 1][user->y] == 178) {
+                        printf("The path is block! Try another way! \n");
+                        Sleep(1000);
                     } else {
                         user->store_value = game_matrix[user->x-1][user->y];
                         game_matrix[user->x][user->y] = user->replace_value;
@@ -97,8 +53,9 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
                     }
                     break;
                 case 80:  // Down arrow
-                    if (user->x == 11) {
-                        printf("Invalid move \n");
+                    if (user->x == 11 || game_matrix[user->x + 1][user->y] == 178) {
+                        printf("The path is block! Try another way! \n");
+                        Sleep(1000);
                     } else {
                         user->store_value = game_matrix[user->x+1][user->y];
                         game_matrix[user->x][user->y] = user->replace_value;
@@ -108,8 +65,9 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
                     }
                     break;
                 case 75:  // Left arrow
-                    if (user->y == 0) {
-                        printf("Invalid move \n");
+                    if (user->y == 0 || game_matrix[user->x][user->y-1] == 178) {
+                        printf("The path is block! Try another way! \n");
+                        Sleep(1000);
                     } else {
                         user->store_value = game_matrix[user->x][user->y-1];
                         game_matrix[user->x][user->y] = user->replace_value;
@@ -119,8 +77,9 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
                     }
                     break;
                 case 77:  // Right arrow
-                    if (user->y == 11) {
-                        printf("Invalid move \n");
+                    if (user->y == 11 || game_matrix[user->x][user->y+1] == 178) {
+                        printf("The path is block! Try another way! \n");
+                        Sleep(1000);
                     } else {
                         user->store_value = game_matrix[user->x][user->y+1];
                         game_matrix[user->x][user->y] = user->replace_value;
