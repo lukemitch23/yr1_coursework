@@ -23,7 +23,7 @@ void shop(user_pos *user, bool *shop_open) {
     int ch;
 
     srand(time(NULL)); // Ideally, you should call srand only once in your program
-
+    store_home:
     *shop_open = true;
     while (*shop_open) {
         // Reset the input loop flag each time the menu is re-displayed
@@ -32,6 +32,13 @@ void shop(user_pos *user, bool *shop_open) {
         // Display the menu and handle key navigation
         do {
             system("cls");
+            printf("  ____   _                   \n");
+            printf(" / ___| | |__    ___   _ __  \n");
+            printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
+            printf("  ___) || | | || (_) || |_) |\n");
+            printf(" |____/ |_| |_| \\___/ | .__/ \n");
+            printf("                      |_|     \n");
+
             printf("Welcome to the shop, pick an option!\n");
             printf("Current money: %d \n\n", user->money);
             printf("%s 1. Sell gems\n", (selected == 1 ? "->" : "  "));
@@ -62,6 +69,12 @@ void shop(user_pos *user, bool *shop_open) {
             case 1: {
                 int price_of_gems = (rand() % 50) + 50;
                 system("cls");
+                printf("  ____   _                   \n");
+                printf(" / ___| | |__    ___   _ __  \n");
+                printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
+                printf("  ___) || | | || (_) || |_) |\n");
+                printf(" |____/ |_| |_| \\___/ | .__/ \n");
+                printf("                      |_|     \n");
                 printf("The current price of gems is: %d (per gem)\n", price_of_gems);
                 if (user->gem_count > 0) {
                     printf("You currently have %d gems, how many do you want to sell: ", user->gem_count);
@@ -84,10 +97,96 @@ void shop(user_pos *user, bool *shop_open) {
                 break;
             }
             case 2: {
-                system("cls");
-                printf("Feature not built yet!\n");
-                printf("\nPress any key to return to the shop menu...");
-                getch();
+
+                int stamina_price = (rand() % 100) + 100;
+                int buy_ch;
+                int buy_selected = 1;
+                int by_num_options = 2;
+                int buy_valid = true;
+                int stamina_to_buy = 0;
+
+                if (user->money == 0 || user->money < stamina_price) {
+                    printf("You don't have enough money or gems to buy things!");
+                    Sleep(2000);
+                    break;
+                }
+
+                do {
+                    system("cls");
+                    printf("  ____   _                   \n");
+                    printf(" / ___| | |__    ___   _ __  \n");
+                    printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
+                    printf("  ___) || | | || (_) || |_) |\n");
+                    printf(" |____/ |_| |_| \\___/ | .__/ \n");
+                    printf("                      |_|     \n");
+
+                    printf("What would you like to buy? You have %d\n", user->money);
+                    while (buy_valid) {
+                        printf("%s 1. Stamina \n", (buy_selected == 1 ? "->" : "  "));
+                        printf("%s 2. Product to come! (oooo!)\n", (buy_selected == 2 ? "->" : "  "));
+                        printf("%s 3. Return to shop home\n", (buy_selected == 3 ? "->" : "  "));
+
+                        buy_ch = getch();
+                        if (buy_ch == 27) {
+                            buy_valid = false;
+                            valid = true;
+                            goto store_home;
+                        }
+                        if (buy_ch == 0 || buy_ch == 224) {
+                            buy_ch = getch();
+                            if (buy_ch == 72) {
+                                buy_selected--;
+                                if (buy_selected < 1) {
+                                    buy_selected = by_num_options;
+                                }
+                            } else if (buy_ch == 80) {
+                                buy_selected++;
+                                if (buy_selected > by_num_options) {
+                                    buy_selected = 1;
+                                }
+                            }
+                            system("cls");
+                            printf("  ____   _                   \n");
+                            printf(" / ___| | |__    ___   _ __  \n");
+                            printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
+                            printf("  ___) || | | || (_) || |_) |\n");
+                            printf(" |____/ |_| |_| \\___/ | .__/ \n");
+                            printf("                      |_|     \n");
+
+                            printf("What would you like to buy?");
+                        } else if (buy_ch == 13 || buy_ch == 32) {
+                            buy_valid = false;
+                        }
+                    }
+
+                    int buy_menu_choice = buy_selected;
+                    switch (buy_menu_choice) {
+                        case 1:
+                            system("cls");
+                            printf("  ____   _                   \n");
+                            printf(" / ___| | |__    ___   _ __  \n");
+                            printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
+                            printf("  ___) || | | || (_) || |_) |\n");
+                            printf(" |____/ |_| |_| \\___/ | .__/ \n");
+                            printf("                      |_|     \n");
+
+                        do {
+                            printf("\n20 stamina costs %d, how much do you want to buy considering you have %d: ", stamina_price, user->money);
+                            scanf("%d", &stamina_to_buy);
+                        } while (stamina_to_buy <= 0);
+
+                        while (user->money < (stamina_to_buy * stamina_price)) {
+                            printf("\nYou can't afford that much!");
+                            printf("\n20 stamina costs %d, how much do you want to buy considering you have %d: ", stamina_price, user->money);
+                            scanf("%d", &stamina_to_buy);
+                        }
+
+                        user->stamina = user->stamina + (stamina_to_buy * 20);
+                        user->money = user->money - (stamina_to_buy * stamina_price);
+
+                        printf("\n%d Stamina bought, your stamina is now: %d", (stamina_to_buy*20), user->stamina);
+                    }
+                } while (buy_valid);
                 break;
             }
             case 3: {

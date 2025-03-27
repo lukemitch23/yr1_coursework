@@ -12,6 +12,7 @@ Project title:
 #include <windows.h>
 #include <stdlib.h>
 #include <time.h>
+#include "end_stats.h"
 
 void spot_mining(int (*game_matrix)[12], user_pos *user){
  srand(time(NULL));
@@ -26,21 +27,42 @@ void spot_mining(int (*game_matrix)[12], user_pos *user){
   stamina_cost = (rand() % 3) + 1;
   switch (stamina_cost) {
    case 1:
-    printf("\nThat was easy! You only lost 5 stamina!");
-    user->stamina = user->stamina - 5;
-    printf("\nCurrent stamina: %d", user->stamina);
+    if (user->stamina > 5) {
+     printf("\nThat was easy! You only lost 5 stamina!");
+     user->stamina = user->stamina - 5;
+     printf("\nCurrent stamina: %d", user->stamina);
+    } else {
+     printf("Unfortunately that was the last of your stamina!");
+     Sleep(2000);
+     end_stats(user);
+     break;
+    }
     break;
 
    case 2:
-    printf("\nThat was quite taxing! You lost 10 stamina!");
-    user->stamina = user->stamina - 10;
-    printf("\nCurrent stamina: %d", user->stamina);
+    if (user->stamina > 10) {
+     printf("\nThat was quite taxing! You lost 10 stamina!");
+     user->stamina = user->stamina - 10;
+     printf("\nCurrent stamina: %d", user->stamina);
+    } else {
+     printf("Unfortunately that was the last of your stamina!");
+     Sleep(2000);
+     end_stats(user);
+     break;
+    }
     break;
 
    case 3:
+    if (user->stamina > 15) {
     printf("\nThat was really tough! You lost 15 stamina");
-    user->stamina = user->stamina - 15;
-    printf("\nCurrent stamina: %d", user->stamina);
+     user->stamina = user->stamina - 15;
+     printf("\nCurrent stamina: %d", user->stamina);
+    } else {
+     printf("Unfortunately that was the last of your stamina!");
+     Sleep(2000);
+     end_stats(user);
+     break;
+    }
     break;
 
   }

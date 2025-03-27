@@ -6,5 +6,5 @@
 #define END_STATS_H
 #include "main.h"
 
-void end_stats(user_pos *user);
+int end_stats(user_pos *user);
 #endif //END_STATS_H

@@ -18,6 +18,7 @@ Project title:
 #include <windows.h>
 #include "shop.h"
 #include "end_stats.h"
+#include <uchar.h>
 
 void start_menu(user_pos *user) {
     bool game_live = true;
@@ -48,13 +49,19 @@ void start_menu(user_pos *user) {
         // Use arrow keys to select a menu option.
         // Clear the screen (Windows-specific).
         system("cls");
-        output_grid(game_matrix);
+        printf("  __  __                     \n");
+        printf(" |  \\/  |  ___  _ __   _   _ \n");
+        printf(" | |\\/| | / _ \\| '_ \\ | | | |\n");
+        printf(" | |  | ||  __/| | | || |_| |\n");
+        printf(" |_|  |_| \\___||_| |_| \\__,_|\n");
+        printf("                              \n");
+
         printf("\n\nWhat would you like to do?\n");
         while (!valid) {
             // Display menu options with pointer
-            printf("%s 1. Move character\n", (selected == 1 ? "->" : "  "));
+            printf("%s 1. Move character \n", (selected == 1 ? "->" : "  "));
             printf("%s 2. Dig!\n", (selected == 2 ? "->" : "  "));
-            printf("%s 3. See inventory\n", (selected == 3 ? "->" : "  "));
+            printf("%s 3. Player inventory\n", (selected == 3 ? "->" : "  "));
             printf("%s 4. Shop\n", (selected == 4 ? "->" : "  "));
             printf("%s 5. Stop game\n", (selected == 5 ? "->" : "  "));
             printf("\nUse up/down arrow keys to navigate, then press SPACE or ENTER to select.\n");
@@ -73,7 +80,13 @@ void start_menu(user_pos *user) {
                 }
                 // Clear the console and re-display the menu:
                 system("cls");
-                output_grid(game_matrix);
+                printf("  __  __                     \n");
+                printf(" |  \\/  |  ___  _ __   _   _ \n");
+                printf(" | |\\/| | / _ \\| '_ \\ | | | |\n");
+                printf(" | |  | ||  __/| | | || |_| |\n");
+                printf(" |_|  |_| \\___||_| |_| \\__,_|\n");
+                printf("                              \n");
+
                 printf("\n\nWhat would you like to do?\n");
             } else if (ch == 13 || ch == 32) {  // ENTER (13) or SPACE (32)
                 valid = 1;
@@ -98,6 +111,14 @@ void start_menu(user_pos *user) {
                 spot_mining(game_matrix, user);
                 break;
             case 3:
+                system("cls");
+            printf("  ___                           _                      \n");
+            printf(" |_ _| _ __ __   __ ___  _ __  | |_  ___   _ __  _   _ \n");
+            printf("  | | | '_ \\ \\ / // _ \\| '_ \\ | __|/ _ \\ | '__|| | | |\n");
+            printf("  | | | | | |\\ V /|  __/| | | || |_| (_) || |   | |_| |\n");
+            printf(" |___||_| |_| \\_/  \\___||_| |_| \\__|\\___/ |_|    \\__, |\n");
+            printf("                                                 |___/  \n");
+
                 // Inventory: Show gem count.
                 printf("You currently have %d gems!\n", user->gem_count);
                 printf("Bank balance: %d\n", user->money);

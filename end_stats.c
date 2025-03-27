@@ -11,7 +11,7 @@ Project title:
 #include "main.h"
 #include <windows.h>
 
-void end_stats(user_pos *user) {
+int end_stats(user_pos *user) {
  system("cls");
  char username[50];
  FILE *fp;
@@ -32,4 +32,6 @@ void end_stats(user_pos *user) {
  fclose(fp);
  printf("\nScore saved the game will now quit.");
  Sleep(2000);
+ system("exit");
+ exit(0);
 }

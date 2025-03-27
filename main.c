@@ -34,8 +34,17 @@ int main(void) {
     user.total_gems_collected = 0;
 
     do {
+        printf("\n");
+        printf("   ____                                   _  _        __  __  _         _               \n");
+        printf("  / __ \\                                 | |(_)      |  \\/  |(_)       (_)              \n");
+        printf(" | |  | | _ __  ___   ___   _ __    ___  | | _  ___  | \\  / | _  _ __   _  _ __    __ _ \n");
+        printf(" | |  | || '__|/ _ \\ / _ \\ | '_ \\  / _ \\ | || |/ __| | |\\/| || || '_ \\ | || '_ \\  / _` |\n");
+        printf(" | |__| || |  |  __/| (_) || |_) || (_) || || |\\__ \\ | |  | || || | | || || | | || (_| |\n");
+        printf("  \\____/ |_|   \\___| \\___/ | .__/  \\___/ |_||_||___/ |_|  |_||_||_| |_||_||_| |_| \\__, |\n");
+        printf("                           | |                                                     __/ |\n");
+        printf("                           |_|                                                    |___/ \n");
+
         printf("Welcome to the mining game!\n");
-        system("cls");
         printf("Select an option and press ENTER to confirm:\n");
         while (game_running) {
             printf("%s 1. Begin game\n", (menu_choice ==1 ? "->":"  "));
@@ -56,7 +65,17 @@ int main(void) {
                     }
                 }
                 system("cls");
+                printf("\n");
+                printf("   ____                                   _  _        __  __  _         _               \n");
+                printf("  / __ \\                                 | |(_)      |  \\/  |(_)       (_)              \n");
+                printf(" | |  | | _ __  ___   ___   _ __    ___  | | _  ___  | \\  / | _  _ __   _  _ __    __ _ \n");
+                printf(" | |  | || '__|/ _ \\ / _ \\ | '_ \\  / _ \\ | || |/ __| | |\\/| || || '_ \\ | || '_ \\  / _` |\n");
+                printf(" | |__| || |  |  __/| (_) || |_) || (_) || || |\\__ \\ | |  | || || | | || || | | || (_| |\n");
+                printf("  \\____/ |_|   \\___| \\___/ | .__/  \\___/ |_||_||___/ |_|  |_||_||_| |_||_||_| |_| \\__, |\n");
+                printf("                           | |                                                     __/ |\n");
+                printf("                           |_|                                                    |___/ \n");
                 printf("Welcome to the mining game!\n");
+                printf("Select an option and press ENTER to confirm:\n");
             } else if (ch == 13 || ch == 32) {
                 game_running = false;
             }
