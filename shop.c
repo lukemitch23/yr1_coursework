@@ -15,6 +15,7 @@ Project title:
 #include <windows.h>
 #include <stdlib.h>
 #include <time.h>
+#include "ascii_art.h"
 
 void shop(user_pos *user, bool *shop_open) {
     int selected = 1;
@@ -32,12 +33,7 @@ void shop(user_pos *user, bool *shop_open) {
         // Display the menu and handle key navigation
         do {
             system("cls");
-            printf("  ____   _                   \n");
-            printf(" / ___| | |__    ___   _ __  \n");
-            printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
-            printf("  ___) || | | || (_) || |_) |\n");
-            printf(" |____/ |_| |_| \\___/ | .__/ \n");
-            printf("                      |_|     \n");
+            shop_text();
 
             printf("Welcome to the shop, pick an option!\n");
             printf("Current money: %d \n\n", user->money);
@@ -69,12 +65,7 @@ void shop(user_pos *user, bool *shop_open) {
             case 1: {
                 int price_of_gems = (rand() % 50) + 50;
                 system("cls");
-                printf("  ____   _                   \n");
-                printf(" / ___| | |__    ___   _ __  \n");
-                printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
-                printf("  ___) || | | || (_) || |_) |\n");
-                printf(" |____/ |_| |_| \\___/ | .__/ \n");
-                printf("                      |_|     \n");
+                shop_text();
                 printf("The current price of gems is: %d (per gem)\n", price_of_gems);
                 if (user->gem_count > 0) {
                     printf("You currently have %d gems, how many do you want to sell: ", user->gem_count);
@@ -113,12 +104,7 @@ void shop(user_pos *user, bool *shop_open) {
 
                 do {
                     system("cls");
-                    printf("  ____   _                   \n");
-                    printf(" / ___| | |__    ___   _ __  \n");
-                    printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
-                    printf("  ___) || | | || (_) || |_) |\n");
-                    printf(" |____/ |_| |_| \\___/ | .__/ \n");
-                    printf("                      |_|     \n");
+                    shop_text();
 
                     printf("What would you like to buy? You have %d\n", user->money);
                     while (buy_valid) {
@@ -146,12 +132,7 @@ void shop(user_pos *user, bool *shop_open) {
                                 }
                             }
                             system("cls");
-                            printf("  ____   _                   \n");
-                            printf(" / ___| | |__    ___   _ __  \n");
-                            printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
-                            printf("  ___) || | | || (_) || |_) |\n");
-                            printf(" |____/ |_| |_| \\___/ | .__/ \n");
-                            printf("                      |_|     \n");
+                            shop_text();
 
                             printf("What would you like to buy?");
                         } else if (buy_ch == 13 || buy_ch == 32) {
@@ -163,17 +144,15 @@ void shop(user_pos *user, bool *shop_open) {
                     switch (buy_menu_choice) {
                         case 1:
                             system("cls");
-                            printf("  ____   _                   \n");
-                            printf(" / ___| | |__    ___   _ __  \n");
-                            printf(" \\___ \\ | '_ \\  / _ \\ | '_ \\ \n");
-                            printf("  ___) || | | || (_) || |_) |\n");
-                            printf(" |____/ |_| |_| \\___/ | .__/ \n");
-                            printf("                      |_|     \n");
+                            shop_text();
 
-                        do {
+                        printf("\n20 stamina costs %d, how much do you want to buy considering you have %d: ", stamina_price, user->money);
+                        scanf("%d", &stamina_to_buy);
+
+                        while (stamina_to_buy <= 0){
                             printf("\n20 stamina costs %d, how much do you want to buy considering you have %d: ", stamina_price, user->money);
                             scanf("%d", &stamina_to_buy);
-                        } while (stamina_to_buy <= 0);
+                        }
 
                         while (user->money < (stamina_to_buy * stamina_price)) {
                             printf("\nYou can't afford that much!");

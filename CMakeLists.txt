@@ -19,4 +19,6 @@ add_executable(yr1_coursework main.c
         end_stats.h
         shop.c
         shop.h
+        ascii_art.c
+        ascii_art.h
 )

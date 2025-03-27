@@ -19,6 +19,7 @@ Project title:
 #include "shop.h"
 #include "end_stats.h"
 #include <uchar.h>
+#include "ascii_art.h"
 
 void start_menu(user_pos *user) {
     bool game_live = true;
@@ -49,12 +50,7 @@ void start_menu(user_pos *user) {
         // Use arrow keys to select a menu option.
         // Clear the screen (Windows-specific).
         system("cls");
-        printf("  __  __                     \n");
-        printf(" |  \\/  |  ___  _ __   _   _ \n");
-        printf(" | |\\/| | / _ \\| '_ \\ | | | |\n");
-        printf(" | |  | ||  __/| | | || |_| |\n");
-        printf(" |_|  |_| \\___||_| |_| \\__,_|\n");
-        printf("                              \n");
+        main_text();
 
         printf("\n\nWhat would you like to do?\n");
         while (!valid) {
@@ -80,12 +76,7 @@ void start_menu(user_pos *user) {
                 }
                 // Clear the console and re-display the menu:
                 system("cls");
-                printf("  __  __                     \n");
-                printf(" |  \\/  |  ___  _ __   _   _ \n");
-                printf(" | |\\/| | / _ \\| '_ \\ | | | |\n");
-                printf(" | |  | ||  __/| | | || |_| |\n");
-                printf(" |_|  |_| \\___||_| |_| \\__,_|\n");
-                printf("                              \n");
+                main_text();
 
                 printf("\n\nWhat would you like to do?\n");
             } else if (ch == 13 || ch == 32) {  // ENTER (13) or SPACE (32)
@@ -112,12 +103,7 @@ void start_menu(user_pos *user) {
                 break;
             case 3:
                 system("cls");
-            printf("  ___                           _                      \n");
-            printf(" |_ _| _ __ __   __ ___  _ __  | |_  ___   _ __  _   _ \n");
-            printf("  | | | '_ \\ \\ / // _ \\| '_ \\ | __|/ _ \\ | '__|| | | |\n");
-            printf("  | | | | | |\\ V /|  __/| | | || |_| (_) || |   | |_| |\n");
-            printf(" |___||_| |_| \\_/  \\___||_| |_| \\__|\\___/ |_|    \\__, |\n");
-            printf("                                                 |___/  \n");
+                inventory_text();
 
                 // Inventory: Show gem count.
                 printf("You currently have %d gems!\n", user->gem_count);
