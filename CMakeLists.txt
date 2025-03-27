@@ -16,4 +16,6 @@ add_executable(yr1_coursework main.c
         main_menu.c
         main_menu.h
         end_stats.c
-        end_stats.h)
+        end_stats.h
+        shop.c
+        shop.h)

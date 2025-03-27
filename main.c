@@ -29,6 +29,7 @@ int main(void) {
     user.y = 0;
     user.gem_count = 0;
     user.replace_value = 48;
+    user.money = 0;
 
     do {
         printf("Welcome to the mining game!\n");

@@ -16,17 +16,19 @@ Project title:
 #include "mining.h"
 #include <conio.h>
 #include <windows.h>
+#include "shop.h"
 
 void start_menu(user_pos *user) {
     bool game_live = true;
     int game_matrix[12][12];
+    bool shop_open = false;
 
     generate_grid(game_matrix);
 
     int game_menu_choice = 0;
     int selected = 1;
     int ch;
-    int num_options = 4;
+    int num_options = 5;
     int valid = 0;
     bool moving = true;
 
@@ -48,7 +50,8 @@ void start_menu(user_pos *user) {
             printf("%s 1. Move character\n", (selected == 1 ? "->" : "  "));
             printf("%s 2. Dig!\n", (selected == 2 ? "->" : "  "));
             printf("%s 3. See inventory\n", (selected == 3 ? "->" : "  "));
-            printf("%s 4. Stop game\n", (selected == 4 ? "->" : "  "));
+            printf("%s 4. Shop\n", (selected == 4 ? "->" : "  "));
+            printf("%s 5. Stop game\n", (selected == 5 ? "->" : "  "));
             printf("\nUse up/down arrow keys to navigate, then press SPACE or ENTER to select.\n");
 
             ch = getch();
@@ -92,9 +95,16 @@ void start_menu(user_pos *user) {
             case 3:
                 // Inventory: Show gem count.
                 printf("You currently have %d gems!\n", user->gem_count);
+                printf("Bank balance: %d\n", user->money);
                 system("pause"); // Wait for user to press a key.
                 break;
             case 4:
+                shop_open = true;
+                do {
+                    shop(user, &shop_open);
+                } while (shop_open);
+                break;
+            case 5:
                 // Stop game: Return to the main menu.
                 printf("Returning to menu\n");
                 game_live = false;

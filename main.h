@@ -11,6 +11,7 @@ typedef struct {
     char store_value;
     char replace_value;
     int gem_count;
+    int money;
 } user_pos;
 
 #endif //MAIN_H
