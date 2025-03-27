@@ -30,6 +30,8 @@ int main(void) {
     user.gem_count = 0;
     user.replace_value = 48;
     user.money = 0;
+    user.stamina = 100;
+    user.total_gems_collected = 0;
 
     do {
         printf("Welcome to the mining game!\n");

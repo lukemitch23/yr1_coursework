@@ -17,6 +17,7 @@ Project title:
 #include <conio.h>
 #include <windows.h>
 #include "shop.h"
+#include "end_stats.h"
 
 void start_menu(user_pos *user) {
     bool game_live = true;
@@ -40,6 +41,10 @@ void start_menu(user_pos *user) {
         valid = 0;
         selected = 1;
 
+        if (user->stamina <= 0) {
+            printf("You have run out of stamina! The game will now end\n");
+            end_stats(user);
+        }
         // Use arrow keys to select a menu option.
         // Clear the screen (Windows-specific).
         system("cls");
@@ -96,6 +101,7 @@ void start_menu(user_pos *user) {
                 // Inventory: Show gem count.
                 printf("You currently have %d gems!\n", user->gem_count);
                 printf("Bank balance: %d\n", user->money);
+                printf("Current stamina %d/100\n", user->stamina);
                 system("pause"); // Wait for user to press a key.
                 break;
             case 4:

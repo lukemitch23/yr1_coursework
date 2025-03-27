@@ -12,6 +12,8 @@ typedef struct {
     char replace_value;
     int gem_count;
     int money;
+    int stamina;
+    int total_gems_collected;
 } user_pos;
 
 #endif //MAIN_H

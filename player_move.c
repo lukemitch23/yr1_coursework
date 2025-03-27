@@ -15,7 +15,7 @@ Project title:
 #include <conio.h>
 #include <windows.h>
 #include "mining.h"
-
+#include "end_stats.h"
 
 
 
@@ -23,12 +23,18 @@ Project title:
 
 void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
     int ch;
+    printf("Your current stamina is: %d/100\n", user->stamina);
     printf("Use the arrow keys to move or esc to escape\n");
     do {
         ch = getch();
         if (ch == 27) {  // ESC key
             *moving = false;
             break;
+        }
+
+        if (user->stamina <= 0) {
+            printf("You have run out of stamina! The game will now end\n");
+            end_stats(user);
         }
 
         if (ch == 13) {  // Enter key (ASCII 13)

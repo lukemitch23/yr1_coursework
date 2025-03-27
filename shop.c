@@ -66,7 +66,7 @@ void shop(user_pos *user, bool *shop_open) {
                 if (user->gem_count > 0) {
                     printf("You currently have %d gems, how many do you want to sell: ", user->gem_count);
                     scanf("%d", &gems_to_sell);
-                    while (gems_to_sell > user->gem_count) {
+                    while (gems_to_sell > user->gem_count || gems_to_sell < 0) {
                         printf("\nYou don't have that many gems!\n");
                         printf("You currently have %d gems, how many do you want to sell: ", user->gem_count);
                         scanf("%d", &gems_to_sell);
