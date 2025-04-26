@@ -8,18 +8,12 @@ Project title:
 */
 
 #include <stdio.h>
-#include "grid_generation.h"
-#include "output_grid.h"
-#include "player_move.h"
 #include <stdbool.h>
 #include "main.h"
-#include "mining.h"
 #include <conio.h>
 #include <windows.h>
-#include "main_menu.h"
 #include "end_stats.h"
-
-
+#include "initial_shop.h"
 
 
 int main(void) {
@@ -29,9 +23,10 @@ int main(void) {
     user.y = 0;
     user.gem_count = 0;
     user.replace_value = 48;
-    user.money = 0;
+    user.money = 500;
     user.stamina = 100;
     user.total_gems_collected = 0;
+    user.energy_drinks = 0;
 
     do {
         printf("\n");
@@ -85,9 +80,9 @@ int main(void) {
     switch (menu_choice) {
         case 1:
             game_ran = true;
-            start_menu(&user);
-            goto end_game;
-            break;
+            game_start_shop(&user);
+            // goto end_game;
+            // break;
         case 2:
             end_game:
                 if (game_ran) {

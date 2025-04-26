@@ -21,4 +21,6 @@ add_executable(yr1_coursework main.c
         shop.h
         ascii_art.c
         ascii_art.h
+        initial_shop.c
+        initial_shop.h
 )

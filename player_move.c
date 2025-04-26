@@ -21,11 +21,17 @@ Project title:
 
 // Note here to check back and see whether or not we need both game_live and running
 
-void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
+void player_move(game_grid *game_matrix, user_pos *user, bool *moving) {
     int ch;
-    printf("Your current stamina is: %d/100\n", user->stamina);
-    printf("Use the arrow keys to move or esc to escape\n");
+
     do {
+
+        system("cls");
+        printf("Your current stamina is: %d/100\n", user->stamina);
+        printf("Use the arrow keys to move or esc to escape\n");
+
+        output_grid(game_matrix);
+
         ch = getch();
         if (ch == 27) {  // ESC key
             *moving = false;
@@ -47,50 +53,50 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
             ch = getch();
             switch (ch) {
                 case 72:  // Up arrow
-                    if (user->x == 0 || game_matrix[user->x - 1][user->y] == 178) {
+                    if (user->x == 0 || game_matrix->game_grid_matrix[user->x - 1][user->y] == 178) {
                         printf("The path is block! Try another way! \n");
                         Sleep(1000);
                     } else {
-                        user->store_value = game_matrix[user->x-1][user->y];
-                        game_matrix[user->x][user->y] = user->replace_value;
+                        user->store_value = game_matrix->game_grid_matrix[user->x-1][user->y];
+                        game_matrix->game_grid_matrix[user->x][user->y] = user->replace_value;
                         user->x--;
-                        game_matrix[user->x][user->y] = 80;
+                        game_matrix->game_grid_matrix[user->x][user->y] = 80;
                         user->replace_value = user->store_value;
                     }
                     break;
                 case 80:  // Down arrow
-                    if (user->x == 11 || game_matrix[user->x + 1][user->y] == 178) {
+                    if (user->x == 11 || game_matrix->game_grid_matrix[user->x + 1][user->y] == 178) {
                         printf("The path is block! Try another way! \n");
                         Sleep(1000);
                     } else {
-                        user->store_value = game_matrix[user->x+1][user->y];
-                        game_matrix[user->x][user->y] = user->replace_value;
+                        user->store_value = game_matrix->game_grid_matrix[user->x+1][user->y];
+                        game_matrix->game_grid_matrix[user->x][user->y] = user->replace_value;
                         user->x++;
-                        game_matrix[user->x][user->y] = 80;
+                        game_matrix->game_grid_matrix[user->x][user->y] = 80;
                         user->replace_value = user->store_value;
                     }
                     break;
                 case 75:  // Left arrow
-                    if (user->y == 0 || game_matrix[user->x][user->y-1] == 178) {
+                    if (user->y == 0 || game_matrix->game_grid_matrix[user->x][user->y-1] == 178) {
                         printf("The path is block! Try another way! \n");
                         Sleep(1000);
                     } else {
-                        user->store_value = game_matrix[user->x][user->y-1];
-                        game_matrix[user->x][user->y] = user->replace_value;
+                        user->store_value = game_matrix->game_grid_matrix[user->x][user->y-1];
+                        game_matrix->game_grid_matrix[user->x][user->y] = user->replace_value;
                         user->y--;
-                        game_matrix[user->x][user->y] = 80;
+                        game_matrix->game_grid_matrix[user->x][user->y] = 80;
                         user->replace_value = user->store_value;
                     }
                     break;
                 case 77:  // Right arrow
-                    if (user->y == 11 || game_matrix[user->x][user->y+1] == 178) {
+                    if (user->y == 11 || game_matrix->game_grid_matrix[user->x][user->y+1] == 178) {
                         printf("The path is block! Try another way! \n");
                         Sleep(1000);
                     } else {
-                        user->store_value = game_matrix[user->x][user->y+1];
-                        game_matrix[user->x][user->y] = user->replace_value;
+                        user->store_value = game_matrix->game_grid_matrix[user->x][user->y+1];
+                        game_matrix->game_grid_matrix[user->x][user->y] = user->replace_value;
                         user->y++;
-                        game_matrix[user->x][user->y] = 80;
+                        game_matrix->game_grid_matrix[user->x][user->y] = 80;
                         user->replace_value = user->store_value;
                     }
                     break;
@@ -98,7 +104,7 @@ void player_move(int (*game_matrix)[12], user_pos *user, bool *moving) {
                     printf("Unhandled key: %d\n", ch);
                     break;
             }
-            Sleep(200);  // Wait for 200ms to prevent spamming
+            Sleep(400);  // Wait for 200ms to prevent spamming
         }
         system("cls");
         output_grid(game_matrix);

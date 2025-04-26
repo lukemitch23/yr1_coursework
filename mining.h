@@ -5,6 +5,7 @@
 #ifndef MINING_H
 #define MINING_H
 #include "main.h"
+#include "main_menu.h"
 
-void spot_mining(int (*game_matrix)[12], user_pos *user);
+void spot_mining(game_grid *game_matrix, user_pos *user);
 #endif //MINING_H

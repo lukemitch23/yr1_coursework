@@ -14,6 +14,11 @@ typedef struct {
     int money;
     int stamina;
     int total_gems_collected;
+    int tool_carry;
+    int power_up_carry;
+    int energy_drinks;
 } user_pos;
+
+
 
 #endif //MAIN_H

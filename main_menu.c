@@ -20,13 +20,18 @@ Project title:
 #include "end_stats.h"
 #include <uchar.h>
 #include "ascii_art.h"
+#include "main_menu.h"
 
 void start_menu(user_pos *user) {
+    system("cls");
     bool game_live = true;
-    int game_matrix[12][12];
+    game_grid game_matrix;
+    game_matrix.gems_in_grid = 0;
+    // int game_matrix[12][12];
     bool shop_open = false;
 
-    generate_grid(game_matrix);
+    generate_grid(&game_matrix);
+    game_matrix.game_grid_matrix[0][0] = 80;
 
     int game_menu_choice = 0;
     int selected = 1;
@@ -35,7 +40,7 @@ void start_menu(user_pos *user) {
     int valid = 0;
     bool moving = true;
 
-    output_grid(game_matrix);
+    output_grid(&game_matrix);
 
     do {
         game_live = true;
@@ -45,7 +50,19 @@ void start_menu(user_pos *user) {
 
         if (user->stamina <= 0) {
             printf("You have run out of stamina! The game will now end\n");
+            system("pause");
             end_stats(user);
+
+        } else if (user->total_gems_collected >= 15) {
+            printf("Nice work, you got all the gems possible! Good day mining!\n");
+            system("pause");
+            end_stats(user);
+        } else if (game_matrix.gems_in_grid <= 0) {
+            system("cls");
+            printf("Nice work, you cleared all the gems! We're re-generating the grid so you can keep on going!\n");
+            generate_grid(&game_matrix);
+            system("pause");
+
         }
         // Use arrow keys to select a menu option.
         // Clear the screen (Windows-specific).
@@ -92,14 +109,14 @@ void start_menu(user_pos *user) {
                 // Move character: This loop calls player_move until 'moving' becomes false.
                 do {
                     moving = true;
-                    system("cls");
-                    output_grid(game_matrix);
-                    player_move(game_matrix, user, &moving);
+                    // system("cls");
+                    // output_grid(game_matrix);
+                    player_move(&game_matrix, user, &moving);
                 } while (moving);
                 break;
             case 2:
                 // Dig!
-                spot_mining(game_matrix, user);
+                spot_mining(&game_matrix, user);
                 break;
             case 3:
                 system("cls");
@@ -109,6 +126,31 @@ void start_menu(user_pos *user) {
                 printf("You currently have %d gems!\n", user->gem_count);
                 printf("Bank balance: %d\n", user->money);
                 printf("Current stamina %d/100\n", user->stamina);
+
+                switch (user->tool_carry) {
+                    case 1:
+                        printf("Current tool: Pickaxe\n");
+                        break;
+                    case 2:
+                        printf("Current tool: Shovel\n");
+                        break;
+                    case 3:
+                        printf("Current tool: Drill\n");
+                        break;
+                }
+
+                switch (user->power_up_carry) {
+                    case 1:
+                        printf("Current powerup: Gem bonus\n");
+                        break;
+                    case 2:
+                        printf("Current powerup: Starting additional stamina\n");
+                        break;
+                    case 3:
+                        printf("Current powerup: Energy drinks\n");
+                        printf("\t%d energy drinks remaining\n", user->energy_drinks);
+                        break;
+                }
                 system("pause"); // Wait for user to press a key.
                 break;
             case 4:

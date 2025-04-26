@@ -17,7 +17,7 @@ int end_stats(user_pos *user) {
  FILE *fp;
 
  printf("\nYou successfully collected: %d gems across your time player!", user->total_gems_collected);
- printf("\nYou died with %d gems on your person, these will be sold off at 25 per gem", user->gem_count);
+ printf("\nYou finished with %d gems on your person, these will be sold off at 25 per gem", user->gem_count);
 
  user->money = user->money + (user->gem_count * 25);
  printf("\nYou ended up making %d money", user->money);
