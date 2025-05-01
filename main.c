@@ -22,6 +22,7 @@ int main(void) {
     user.x = 0;
     user.y = 0;
     user.gem_count = 0;
+    user.store_value = 0;
     user.replace_value = 48;
     user.money = 500;
     user.stamina = 100;
