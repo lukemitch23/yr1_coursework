@@ -17,7 +17,9 @@ Project title:
 
 
 int main(void) {
-    int ch, menu_choice=1, num_options=2, game_running=true, game_ran = false;
+    int ch, menu_choice=1, num_options=3, game_running=true, game_ran = false;
+    char username[50];
+    int gems, money;
     user_pos user;
     user.x = 0;
     user.y = 0;
@@ -29,6 +31,7 @@ int main(void) {
     user.total_gems_collected = 0;
     user.energy_drinks = 0;
 
+    RESET:
     do {
         printf("\n");
         printf("   ____                                   _  _        __  __  _         _               \n");
@@ -44,7 +47,8 @@ int main(void) {
         printf("Select an option and press ENTER to confirm:\n");
         while (game_running) {
             printf("%s 1. Begin game\n", (menu_choice ==1 ? "->":"  "));
-            printf("%s 2. Exit\n", (menu_choice ==2 ? "->":"  "));
+            printf("%s 2. View leaderboard\n", (menu_choice ==2 ? "->":"  "));
+            printf("%s 3. Exit\n", (menu_choice ==3 ? "->":"  "));
 
             ch = getch();
             if (ch == 0 || ch == 224) {
@@ -82,9 +86,23 @@ int main(void) {
         case 1:
             game_ran = true;
             game_start_shop(&user);
-            // goto end_game;
-            // break;
+            break;
         case 2:
+            FILE *fp;
+            fp = fopen("user_scores.txt", "r");
+            if (fp == NULL) {
+                printf("Leaderboard is currently empty");
+            } else {
+                while (fscanf(fp, "Username: %[^,], Gems: %d, Money: %d\n", username, &gems, &money) == 3) {
+                    printf("Name: %s\t Gems: %d\t Money: %d\n", username, gems, money);
+                }
+                fclose(fp);
+            }
+            system("pause");
+            game_running = true;
+            system("cls");
+            goto RESET;
+        case 3:
             end_game:
                 if (game_ran) {
                     printf("Thanks for playing!\n");

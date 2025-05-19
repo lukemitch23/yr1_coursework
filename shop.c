@@ -109,7 +109,7 @@ void shop(user_pos *user, bool *shop_open) {
                     printf("What would you like to buy? You have %d\n", user->money);
                     while (buy_valid) {
                         printf("%s 1. Stamina \n", (buy_selected == 1 ? "->" : "  "));
-                        printf("%s 2. Product to come! (oooo!)\n", (buy_selected == 2 ? "->" : "  "));
+                        printf("%s 2. Product to come!\n", (buy_selected == 2 ? "->" : "  "));
                         printf("%s 3. Return to shop home\n", (buy_selected == 3 ? "->" : "  "));
 
                         buy_ch = getch();
@@ -165,6 +165,7 @@ void shop(user_pos *user, bool *shop_open) {
 
                         printf("\n%d Stamina bought, your stamina is now: %d", (stamina_to_buy*20), user->stamina);
                     }
+                    Sleep(3000);
                 } while (buy_valid);
                 break;
             }

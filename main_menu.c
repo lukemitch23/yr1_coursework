@@ -54,7 +54,7 @@ void start_menu(user_pos *user) {
             end_stats(user);
 
         } else if (user->total_gems_collected >= 15) {
-            printf("Nice work, you got all the gems possible! Good day mining!\n");
+            printf("Nice work, you completed the game! Good day mining!\n");
             system("pause");
             end_stats(user);
         } else if (game_matrix.gems_in_grid <= 0) {
@@ -151,7 +151,7 @@ void start_menu(user_pos *user) {
                         printf("\t%d energy drinks remaining\n", user->energy_drinks);
                         break;
                 }
-                system("pause"); // Wait for user to press a key.
+                system("pause");
                 break;
             case 4:
                 shop_open = true;
@@ -160,7 +160,6 @@ void start_menu(user_pos *user) {
                 } while (shop_open);
                 break;
             case 5:
-                // Stop game: Return to the main menu.
                 printf("Returning to menu\n");
                 game_live = false;
                 break;

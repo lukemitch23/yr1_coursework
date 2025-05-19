@@ -18,6 +18,7 @@ Project title:
 void spot_mining(game_grid *game_matrix, user_pos *user){
  srand(time(NULL));
  int stamina_cost = 0;
+ int replace_gem = 1;
  if (user->store_value == 42) {
   printf("Gem found!\n");
   if (user->power_up_carry == 1) {
@@ -26,31 +27,53 @@ void spot_mining(game_grid *game_matrix, user_pos *user){
     case 1 ... 6:
      gem_bonus = 1;
      printf("Your bonus didn't cash in this time sadly! Only one gem found.\n");
-     user->gem_count += gem_bonus;
-     user->total_gems_collected++;
+     if ((user->gem_count + gem_bonus) >= 10) {
+      printf("You can't carry that many gems! Come back later!");
+      replace_gem = 0;
+     } else {
+      user->gem_count += gem_bonus;
+      user->total_gems_collected++;
+     }
      break;
     case 7 ... 9:
      gem_bonus = 2;
      printf("Your bonus is paying off, it turned out to be %d gems\n", gem_bonus);
-     user->gem_count += gem_bonus;
-     user->total_gems_collected++;
+     if ((user->gem_count + gem_bonus) >= 10) {
+      printf("You can't carry that many gems! Come back later!");
+      replace_gem = 0;
+     } else {
+      user->gem_count += gem_bonus;
+      user->total_gems_collected++;
+     }
      break;
     case 10:
      gem_bonus = 3;
      printf("Your bonus is paying off, it turned out to be %d gems\n", gem_bonus);
-     user->gem_count += gem_bonus;
-     user->total_gems_collected++;
+     if ((user->gem_count + gem_bonus) >= 10) {
+      printf("You can't carry that many gems! Come back later!");
+      replace_gem = 0;
+     } else {
+      user->gem_count += gem_bonus;
+      user->total_gems_collected++;
+     }
      break;
    }
   } else {
-   user->gem_count = user->gem_count + 1;
-   user->total_gems_collected++;
+   if (user->gem_count >= 10) {
+    printf("You can't carry that many gems! Come back later!");
+    replace_gem = 0;
+   } else {
+    user->gem_count++;
+    user->total_gems_collected++;
+   }
   }
 
-  game_matrix->gems_in_grid--;
-  printf("You now have %d gems!\n", user->gem_count);
-  user->replace_value = 48;
-  user->store_value = 48;
+  if (replace_gem) {
+   game_matrix->gems_in_grid--;
+   printf("You now have %d gems!\n", user->gem_count);
+   user->replace_value = 48;
+   user->store_value = 48;
+  }
   stamina_cost = (rand() % 3) + 1;
   switch (stamina_cost) {
    case 1:
